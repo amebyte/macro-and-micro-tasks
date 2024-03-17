@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>微任务宏任务的区别</title>
+  </head>
+  <body>
+    <script>
+        function createElement(name) {
+            const el = document.createElement('div')
+            el.textContent = `我是 ${name}`
+            document.body.append(el)
+            const startTime = performance.now()
+            while((performance.now() - startTime) < 16.7*8) {
+
+            }
+        }
+        
+        Promise.resolve().then(() => {
+            createElement('Cobyte')
+        })
+        Promise.resolve().then(() => {
+            createElement('掘金签约作者')
+        })
+        Promise.resolve().then(() => {
+            createElement('Coboy')
+        })
+    </script>
+  <body>
+</html>
